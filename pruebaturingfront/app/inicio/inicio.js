@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Inicio() {
@@ -14,9 +13,9 @@ export default function Inicio() {
 					<Link href="#beneficios" className="hover:text-[#102f43]">Beneficios</Link>
 					<Link href="#comenzar" className="hover:text-[#102f43]">Como comenzar</Link>
 				</div>
-				<Button asChild variant="outline" className="border-[#b9cbd4] bg-white text-[#102f43] hover:bg-[#dce8ed]">
-					<Link href="/login">Iniciar sesión</Link>
-				</Button>
+				<Link href="/login" className="inline-flex h-8 items-center justify-center rounded-lg border border-[#b9cbd4] bg-white px-2.5 text-sm font-medium text-[#102f43] transition-colors hover:bg-[#dce8ed] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[#102f43]/40">
+					Iniciar sesión
+				</Link>
 			</nav>
 
 			<section className="relative overflow-hidden bg-[#dce8ed] px-6 py-24 text-center md:py-36">
@@ -29,8 +28,8 @@ export default function Inicio() {
 					<h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl">Todo lo que necesitas, en un solo lugar</h1>
 					<p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#466373]">Organiza tus intereses, descubre nuevas ideas y comparte tu experiencia con una comunidad activa.</p>
 					<div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-						<Button asChild size="lg" className="bg-[#102f43] text-white  hover:bg-[#17455e]"><Link href="/registro" className="flex items-center justify-center gap-2">Comenzar ahora <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
-						<Button asChild size="lg" variant="outline" className="border-[#9eb7c2] bg-white/70 text-[#102f43] hover:bg-white"><Link href="#beneficios">Conocer más</Link></Button>
+						<Link href="/registro" className="inline-flex h-9 items-center justify-center gap-2 rounded-lg bg-[#102f43] px-2.5 text-sm font-medium text-white transition-colors hover:bg-[#17455e] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[#102f43]/40">Comenzar ahora <ArrowRight className="h-4 w-4" /></Link>
+						<Link href="#beneficios" className="inline-flex h-9 items-center justify-center rounded-lg border border-[#9eb7c2] bg-white/70 px-2.5 text-sm font-medium text-[#102f43] transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[#102f43]/40">Conocer más</Link>
 					</div>
 				</div>
 			</section>
@@ -44,7 +43,7 @@ export default function Inicio() {
 			<section id="comenzar" className="border-t border-[#c8d8df] bg-[#eef4f6] px-6 py-16 text-center">
 				<h2 className="text-3xl font-bold tracking-tight">Empieza cuando quieras</h2>
 				<p className="mx-auto mt-3 max-w-xl text-[#607685]">Crea tu cuenta y descubre una forma más sencilla de disfrutar la experiencia.</p>
-				<Button asChild className="mt-6 bg-[#1fc3a5] text-[#102f43] hover:bg-[#18ad92]"><Link href="/registro">Crear una cuenta</Link></Button>
+				<Link href="/registro" className="mt-6 inline-flex h-8 items-center justify-center rounded-lg bg-[#1fc3a5] px-2.5 text-sm font-medium text-[#102f43] transition-colors hover:bg-[#18ad92] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[#102f43]/40">Crear una cuenta</Link>
 			</section>
 		</main>
 	);
