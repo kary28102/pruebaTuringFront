@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { ArrowLeft, LogIn } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -9,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
 export default function Login() {
+	const router = useRouter()
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [error, setError] = useState("")
@@ -25,8 +27,31 @@ export default function Login() {
 
 		setLoading(true)
 		try {
-			// Conecta aquí tu servicio de autenticación.
-			await new Promise((resolve) => setTimeout(resolve, 500))
+			const response = await fetch("/api/auth/login", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					email: email.trim(),
+					password,
+				}),
+			})
+			const data = await response.json().catch(() => null)
+
+			if (!response.ok) {
+				throw new Error(data?.error ?? "No se pudo iniciar sesión.")
+			}
+
+			if (!data?.access_token) {
+				throw new Error("El servidor no devolvió un token de acceso.")
+			}
+
+			localStorage.setItem("access_token", data.access_token)
+			if (data.usuario) {
+				localStorage.setItem("usuario", JSON.stringify(data.usuario))
+			}
+			router.push("/peliculas")
+		} catch (requestError) {
+			setError(requestError instanceof Error ? requestError.message : "No se pudo iniciar sesión.")
 		} finally {
 			setLoading(false)
 		}
@@ -98,9 +123,9 @@ export default function Login() {
 						</Button>
 						<p className="text-center text-sm text-[#9bb4bb]">
 							¿No tienes una cuenta?{" "}
-							<a href="#registro" className="font-medium text-[#102f43] hover:underline">
+							<Link href="/registro" className="font-medium text-[#102f43] hover:underline">
 								Regístrate
-							</a>
+							</Link>
 						</p>
 					</form>
 				</CardContent>

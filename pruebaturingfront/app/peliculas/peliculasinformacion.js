@@ -1,18 +1,10 @@
-import Link from "next/link";
-import { ArrowLeft, Star } from "lucide-react";
+import { Star } from "lucide-react";
+import CineNav from "@/components/cine-nav";
 
 export default function PeliculaInformacion({ movie }) {
 	return (
 		<main className="min-h-screen bg-[#102f43] text-[#eaf5f3]">
-			<nav className="bg-[#102f43] text-white">
-				<div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4 sm:px-8">
-					<Link href="/peliculas" className="flex items-center gap-2 text-sm text-[#b9ced1] transition hover:text-white">
-						<ArrowLeft className="h-4 w-4" />
-						Volver a películas
-					</Link>
-					<Link href="/" className="text-xl font-bold tracking-tight">cine<span className="text-[#19c5a5]">.</span></Link>
-				</div>
-			</nav>
+			<CineNav variant="detail" />
 
 			<section className="mx-auto grid max-w-5xl gap-8 px-5 py-10 sm:grid-cols-[minmax(220px,300px)_1fr] sm:px-8 sm:py-16">
 				<div className="overflow-hidden rounded-2xl border border-[#214457] bg-[#163346] shadow-xl shadow-[#061a2a]/20">
