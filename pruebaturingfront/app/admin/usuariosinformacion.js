@@ -3,7 +3,6 @@
 import { ArrowLeft, Pencil, Search, ShieldCheck, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import CineNav from "@/components/cine-nav";
 import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { getStoredUsers, initialUsers, storeUsers } from "@/lib/admin-users";
@@ -55,16 +54,16 @@ export default function usuariosinformacion() {
 							<TableBody className="divide-y divide-[#214457]">
 								{filteredUsers.map((user) => (
 									<TableRow key={user.id} className="text-[#b9ced1]">
-										<TableCell className="px-4 py-4 font-semibold text-white sm:px-5">{user.name}</TableCell>
-										<TableCell className="hidden px-5 py-4 sm:table-cell">{user.email}</TableCell>
-										<TableCell className="hidden px-5 py-4 sm:table-cell">{user.role}</TableCell>
-										<TableCell className="px-4 py-4 sm:px-5">{user.status}</TableCell>
-										<TableCell className="px-4 py-4 text-right sm:px-5"><div className="flex justify-end gap-2">
+										<TableCell className="px-2 py-2 font-semibold text-white sm:px-2">{user.name}</TableCell>
+										<TableCell className="hidden px-3 py-2 sm:table-cell">{user.email}</TableCell>
+										<TableCell className="hidden px-3 py-2 sm:table-cell">{user.role}</TableCell>
+										<TableCell className="px-2 py-2 sm:px-2">{user.status}</TableCell>
+										<TableCell className="px-2 py-2 text-right sm:px-2"><div className="flex justify-end gap-2">
 											<Link href={`/admin/modificarusuarios/${user.id}`} aria-label={`Editar a ${user.name}`} title="Editar usuario" className="inline-flex items-center gap-2 rounded-lg border border-[#315365] px-2.5 py-2 text-xs font-semibold text-[#eaf5f3] transition hover:border-[#19c5a5] hover:text-[#19c5a5] sm:px-3">
-												<Pencil className="h-3.5 w-3.5" /><span className="hidden sm:inline">Editar</span>
+												<Pencil className="h-3.5 w-3.5" /><span className="hidden display-none md:inline">Editar</span>
 											</Link>
 											<button type="button" onClick={() => deleteUser(user)} aria-label={`Eliminar a ${user.name}`} title="Eliminar usuario" className="inline-flex items-center gap-2 rounded-lg border border-[#b85c5c] px-2.5 py-2 text-xs font-semibold text-[#f2aaaa] transition hover:bg-[#b85c5c]/15 sm:px-3">
-												<Trash2 className="h-3.5 w-3.5" /><span className="hidden sm:inline">Eliminar</span>
+												<Trash2 className="h-3.5 w-3.5" /><span className="hidden display-none md:inline">Eliminar</span>
 											</button>
 										</div></TableCell>
 									</TableRow>

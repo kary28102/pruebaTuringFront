@@ -61,7 +61,7 @@ export default function Login() {
 		<main className="min-h-screen bg-[#102f43] text-[#eaf5f3]">
 			<nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
 				<Link href="/" className="text-xl font-bold tracking-tight">
-					Bienvenido<span className="text-[#19c5a5]">.</span>
+					cine<span className="text-[#19c5a5]">.</span>
 				</Link>
 				<div className="hidden items-center gap-6 text-sm text-[#9bb4bb] md:flex">
 					<Link href="/#beneficio" className="transition-colors hover:text-white">Beneficios</Link>

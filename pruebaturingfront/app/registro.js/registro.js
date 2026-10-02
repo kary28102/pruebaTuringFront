@@ -47,7 +47,7 @@ export default function Registro() {
     <main className="min-h-screen bg-[#102f43] px-4 py-12 text-[#eaf5f3]">
       <div className="mx-auto max-w-md">
         <Link href="/" className="text-xl font-bold tracking-tight">
-          Bienvenido<span className="text-[#19c5a5]">.</span>
+          cine<span className="text-[#19c5a5]">.</span>
         </Link>
         <div className="mt-8 rounded-xl border border-[#315365] bg-[#163f52] p-6 shadow-lg">
           <h1 className="text-2xl font-bold text-white">Crear cuenta</h1>
