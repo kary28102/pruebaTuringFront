@@ -30,3 +30,34 @@ export function GET(request) {
 		})
 		.catch(() => Response.json({ error: "No se pudo conectar con el servidor de películas." }, { status: 502 }))
 }
+
+function getAuthorization(request) {
+	const authorization = request.headers.get("authorization");
+	return authorization ? { Authorization: authorization } : {};
+}
+
+async function forwardResponse(response) {
+	const data = await response.json().catch(() => null);
+
+	if (!response.ok) {
+		const detail = typeof data?.detail === "string" ? data.detail : "No se pudo completar la solicitud.";
+		return Response.json({ error: detail }, { status: response.status });
+	}
+
+	return data === null ? new Response(null, { status: response.status }) : Response.json(data, { status: response.status });
+}
+
+export async function POST(request) {
+	try {
+		const response = await fetch(API_URL, {
+			method: "POST",
+			headers: { ...getAuthorization(request), "Content-Type": "application/json" },
+			body: JSON.stringify(await request.json()),
+			cache: "no-store",
+		});
+		return forwardResponse(response);
+	} catch (error) {
+		console.error("Error al crear la película:", error);
+		return Response.json({ error: "No se pudo conectar con el servidor de películas." }, { status: 502 });
+	}
+}

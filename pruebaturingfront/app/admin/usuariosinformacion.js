@@ -5,15 +5,49 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { getStoredUsers, initialUsers, storeUsers } from "@/lib/admin-users";
 import AppSidebar from "@/components/appSidebar";
 
+function roleLabel(role) {
+	const normalizedRole = String(role ?? "").toLowerCase();
+	if (normalizedRole === "admin" || normalizedRole === "administrador") return "Administrador";
+	return "Usuario";
+}
+
 export default function usuariosinformacion() {
-	const [users, setUsers] = useState(initialUsers);
+	const [users, setUsers] = useState([]);
 	const [search, setSearch] = useState("");
+	const [error, setError] = useState("");
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		setUsers(getStoredUsers());
+		async function loadUsers() {
+			try {
+				const token = localStorage.getItem("access_token");
+				const response = await fetch("/api/usuarios", {
+					headers: token ? { Authorization: `Bearer ${token}` } : {},
+					cache: "no-store",
+				});
+				const data = await response.json().catch(() => null);
+
+				if (!response.ok) {
+					throw new Error(data?.error ?? "No se pudieron consultar los usuarios.");
+				}
+
+				setUsers(data.map((user) => ({
+					id: user.id,
+					name: user.nombre,
+					email: user.email,
+					role: roleLabel(user.rol),
+					status: user.estado ?? "Activo",
+				})));
+			} catch (requestError) {
+				setError(requestError instanceof Error ? requestError.message : "No se pudieron consultar los usuarios.");
+			} finally {
+				setLoading(false);
+			}
+		}
+
+		loadUsers();
 	}, []);
 
 	const filteredUsers = useMemo(() => {
@@ -21,18 +55,30 @@ export default function usuariosinformacion() {
 		return users.filter((user) => `${user.name} ${user.email} ${user.role}`.toLowerCase().includes(query));
 	}, [search, users]);
 
-	function deleteUser(user) {
+	async function deleteUser(user) {
 		if (!window.confirm(`¿Seguro que deseas eliminar a ${user.name}? Esta acción no se puede deshacer.`)) return;
 
-		setUsers((currentUsers) => currentUsers.filter((currentUser) => currentUser.id !== user.id));
-		storeUsers(users.filter((currentUser) => currentUser.id !== user.id));
+		try {
+			const token = localStorage.getItem("access_token");
+			const response = await fetch(`/api/usuarios/${user.id}`, {
+				method: "DELETE",
+				headers: token ? { Authorization: `Bearer ${token}` } : {},
+			});
+			const data = await response.json().catch(() => null);
+
+			if (!response.ok) {
+				throw new Error(data?.error ?? "No se pudo eliminar el usuario.");
+			}
+
+			setUsers((currentUsers) => currentUsers.filter((currentUser) => currentUser.id !== user.id));
+		} catch (requestError) {
+			setError(requestError instanceof Error ? requestError.message : "No se pudo eliminar el usuario.");
+		}
 	}
 
 	return (
 		<AppSidebar>
 			<main className="min-h-screen bg-[#163f52] text-[#eaf5f3]">
-				
-
 				<section className="mx-auto max-w-7xl px-5 py-10 sm:px-8">
 					<div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
 						<div>
@@ -47,6 +93,8 @@ export default function usuariosinformacion() {
 					</div>
 
 					<div className="mt-8 overflow-x-auto rounded-2xl border border-[#315365] bg-[#0d2a3c] shadow-2xl shadow-[#061a2a]/20">
+						{error && <p className="border-b border-[#b85c5c] px-5 py-4 text-sm text-[#f2aaaa]" role="alert">{error}</p>}
+						{loading && <p className="px-5 py-12 text-center text-[#9bb4bb]">Cargando usuarios...</p>}
 						<Table className="text-left text-sm">
 							<TableHeader className="border-b border-[#214457] bg-[#163346] text-xs uppercase tracking-wide text-[#9bb4bb]">
 								<TableRow><TableHead className="px-4 py-4 font-semibold sm:px-5">Usuario</TableHead><TableHead className="hidden px-5 py-4 font-semibold sm:table-cell">Correo</TableHead><TableHead className="hidden px-5 py-4 font-semibold sm:table-cell">Rol</TableHead><TableHead className="px-4 py-4 font-semibold sm:px-5">Estado</TableHead><TableHead className="px-4 py-4 text-right font-semibold sm:px-5">Acciones</TableHead></TableRow>
@@ -70,7 +118,7 @@ export default function usuariosinformacion() {
 								))}
 							</TableBody>
 						</Table>
-						{filteredUsers.length === 0 && <p className="px-5 py-12 text-center text-[#9bb4bb]">No encontramos usuarios.</p>}
+						{!loading && filteredUsers.length === 0 && <p className="px-5 py-12 text-center text-[#9bb4bb]">No encontramos usuarios.</p>}
 					</div>
 
 					<Link href="/admin" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#b9ced1] transition hover:text-white">
