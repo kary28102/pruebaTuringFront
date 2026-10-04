@@ -49,6 +49,7 @@ export default function appSidebar({ children }) {
 		if (admin) {
 			items.splice(1, 0,
 				{ label: "Modificar películas", href: "/admin/peliculas", icon: Film },
+				{ label: "Modificar personajes", href: "/admin/personajes", icon: Users },
 				{ label: "Usuarios", href: "/admin", icon: Users },
 			);
 		}

@@ -25,7 +25,6 @@ function MediaCard({ item, imageShape, cardVariant, cardClassName = "" }) {
 			{!isImageOnly && <div className={isFeatured ? "min-w-0" : "min-h-28 bg-[#0d2a3c] p-4"}>
 				{(item.eyebrow || isFeatured) && <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#19c5a5]">{item.eyebrow ?? "Película destacada"}</p>}
 				<h3 className="mt-1 truncate font-semibold text-white">{item.title}</h3>
-				{item.subtitle && <p className="mt-1 min-h-[4.5rem] line-clamp-3 text-sm leading-6 text-[#9bb4bb]">{item.subtitle}</p>}
 				{isFeatured && item.rating != null && <p className="mt-3 flex items-center gap-1 text-sm font-semibold text-[#f6c85f]"><span aria-hidden="true">★</span>{item.rating}</p>}
 				{item.description && <p className="mt-3 line-clamp-2 text-xs leading-5 text-[#b9ced1]">{item.description}</p>}
 			</div>}

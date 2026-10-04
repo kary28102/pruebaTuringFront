@@ -78,7 +78,7 @@ export default function Peliculas() {
 							</div>
 							</div>
 							{error && <p className="rounded-lg border border-[#ef8f8f]/40 bg-[#ef8f8f]/10 px-4 py-3 text-sm text-[#ffb5b5]">{error}</p>}
-							<div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">{movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}</div>
+							<div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">{movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}</div>
 							{!error && movies.length === 0 && <p className="py-16 text-center text-[#9bb4bb]">No encontramos películas con esos criterios.</p>}
 							</section>
 			<MediaCarousel id="destacadas" items={movies.slice(0, 4).map((movie) => ({ ...movie, href: `/peliculas/${movie.id}`, alt: `Poster de ${movie.title}` }))} eyebrow="Selección de la semana" title="Películas destacadas" sectionClassName="border-t border-[#183c4e] bg-[#0a2435]" cardVariant="image-only" ariaLabel="Películas destacadas" />
