@@ -106,14 +106,14 @@ export default function PeliculaForm({ editing = false }) {
 					</form>
 					<Link href="/admin/peliculas" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#b9ced1] transition hover:text-white"><ArrowLeft className="h-4 w-4" />Volver a películas</Link>
 				</section>
+				<SiteFooter />
 			</main>
 		</AppSidebar>
+		
 	);
 }
 
 function Field({ label, type = "text", value, onChange, required = false, ...props }) {
-	return <>
-		<label className="block space-y-2 text-sm font-semibold text-[#b9ced1]">{label}<input required={required} type={type} value={value} onChange={(event) => onChange(event.target.value)} className="w-full rounded-lg border border-[#315365] bg-[#102f43] px-3 py-3 font-normal text-white outline-none transition focus:border-[#19c5a5]" {...props} /></label>;
-		<SiteFooter />
-	</>
+	return <label className="block space-y-2 text-sm font-semibold text-[#b9ced1]">{label}<input required={required} type={type} value={value} onChange={(event) => onChange(event.target.value)} className="w-full rounded-lg border border-[#315365] bg-[#102f43] px-3 py-3 font-normal text-white outline-none transition focus:border-[#19c5a5]" {...props} /></label>;
+
 }

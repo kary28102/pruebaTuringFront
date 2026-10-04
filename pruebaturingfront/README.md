@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend – Aplicación Web
 
-## Getting Started
+Aplicación web desarrollada con **React y JavaScript**, diseñada para consumir y mostrar información proporcionada por una API desarrollada en Python.
 
-First, run the development server:
+El proyecto implementa una interfaz web basada en el wireframe seleccionado y cuenta con integración con el Backend mediante peticiones HTTP.
+
+## Tecnologías utilizadas
+
+* **React**
+* **JavaScript**
+* **HTML5**
+* **CSS3**
+
+
+## Requisitos
+
+Antes de ejecutar el proyecto es necesario contar con:
+
+* Node.js
+* npm
+* Git
+
+
+
+## Instalación
+
+
+### 2. Instalar dependencias
+
+Ejecutar:
+
+```bash
+npm install
+```
+
+Este comando instalará todas las dependencias especificadas en el archivo `package.json`.
+
+## Ejecución en entorno local
+
+Para iniciar el servidor de desarrollo:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Endpoints consumidos
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+El Frontend consume los endpoints proporcionados por el Backend.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Pruebas
 
-## Learn More
+Para verificar el funcionamiento del Frontend:
 
-To learn more about Next.js, take a look at the following resources:
+1. Iniciar el Backend.
+2. Iniciar el Frontend.
+3. Acceder a la URL local.
+4. Verificar la navegación entre las diferentes secciones.
+5. Comprobar la comunicación con la API.
+6. Verificar que la información recibida se muestre correctamente.
+7. Probar los formularios y las validaciones.
+8. Comprobar el manejo de errores.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Consideraciones
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* El Backend debe estar ejecutándose para utilizar las funcionalidades que dependen de la API.
+* La URL de la API debe estar correctamente configurada.
+* Las dependencias deben instalarse antes de ejecutar el proyecto.
+* No se deben incluir credenciales o información sensible en el repositorio.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Autor
+
+**Ninfa Yukary Hernandez Vargas**
+
+Proyecto desarrollado como parte de una prueba técnica de desarrollo de software.
+
+
+## Primeros pasos
+
+Primero, ejecuta el servidor de desarrollo:
+
+```bash
+npm run dev
+# o
+yarn dev
+# o
+pnpm dev
+# o
+bun dev
+```
