@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import AppSidebar from "@/components/appSidebar";
 import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import SiteFooter from "@/components/site-footer";
 
 export default function PeliculasInformacion() {
 	const [movies, setMovies] = useState([]);
@@ -153,6 +154,7 @@ export default function PeliculasInformacion() {
 						<ArrowLeft className="h-4 w-4" />Volver al panel
 					</Link>
 				</section>
+				<SiteFooter />
 			</main>
 		</AppSidebar>
 	);

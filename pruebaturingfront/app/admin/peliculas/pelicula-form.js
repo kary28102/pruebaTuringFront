@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import AppSidebar from "@/components/appSidebar";
+import SiteFooter from "@/components/site-footer";
 
 const emptyMovie = { title: "", genre: "", year: "", rating: "", description: "", image: "" };
 
@@ -111,5 +112,8 @@ export default function PeliculaForm({ editing = false }) {
 }
 
 function Field({ label, type = "text", value, onChange, required = false, ...props }) {
-	return <label className="block space-y-2 text-sm font-semibold text-[#b9ced1]">{label}<input required={required} type={type} value={value} onChange={(event) => onChange(event.target.value)} className="w-full rounded-lg border border-[#315365] bg-[#102f43] px-3 py-3 font-normal text-white outline-none transition focus:border-[#19c5a5]" {...props} /></label>;
+	return <>
+		<label className="block space-y-2 text-sm font-semibold text-[#b9ced1]">{label}<input required={required} type={type} value={value} onChange={(event) => onChange(event.target.value)} className="w-full rounded-lg border border-[#315365] bg-[#102f43] px-3 py-3 font-normal text-white outline-none transition focus:border-[#19c5a5]" {...props} /></label>;
+		<SiteFooter />
+	</>
 }

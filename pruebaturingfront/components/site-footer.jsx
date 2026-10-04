@@ -1,18 +1,35 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { Film, Mail } from "lucide-react";
 
-const footerLinks = [
+const publicFooterLinks = [
+	{ label: "Inicio", href: "/" },
+	{ label: "Registro", href: "/registro" },
+	{ label: "Iniciar sesión", href: "/login" },
+];
+
+const authenticatedFooterLinks = [
 	{ label: "Películas", href: "/peliculas" },
 	{ label: "Géneros", href: "/peliculas#generos" },
 	{ label: "Personajes", href: "/peliculas#personajes" },
 ];
 
 export default function SiteFooter() {
+	const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+	useEffect(() => {
+		setIsAuthenticated(Boolean(window.localStorage.getItem("access_token")));
+	}, []);
+
+	const footerLinks = isAuthenticated ? authenticatedFooterLinks : publicFooterLinks;
+
 	return (
 		<footer className="border-t border-[#214457] bg-[#081f2e] px-5 py-10 text-[#9bb4bb] sm:px-8">
 			<div className="mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-start md:justify-between">
 				<div className="max-w-xs">
-					<Link href="/peliculas" className="inline-flex items-center gap-2 text-xl font-bold tracking-tight text-white">
+					<Link href={isAuthenticated ? "/peliculas" : "/"} className="inline-flex items-center gap-2 text-xl font-bold tracking-tight text-white">
 						<Film className="h-5 w-5 text-[#19c5a5]" />
 						cine<span className="text-[#19c5a5]">.</span>
 					</Link>
@@ -24,6 +41,7 @@ export default function SiteFooter() {
 					{footerLinks.map((link) => <Link key={link.href} href={link.href} className="transition hover:text-[#19c5a5]">{link.label}</Link>)}
 				</nav>
 
+
 				<div className="flex flex-col gap-3 text-sm">
 					<p className="font-semibold text-white">Conecta</p>
 					<a href="mailto:hola@cine.example" className="inline-flex items-center gap-2 transition hover:text-[#19c5a5]"><Mail className="h-4 w-4" /> hola@cine.example</a>
@@ -32,8 +50,9 @@ export default function SiteFooter() {
 						<a href="#twitter" aria-label="Twitter" className="text-xs font-bold transition hover:text-[#19c5a5]">X</a>
 					</div>
 				</div>
+				
 			</div>
-			<div className="mx-auto mt-8 max-w-7xl border-t border-[#214457] pt-5 text-xs">
+			<div className="mx-auto text-center mt-8 max-w-7xl border-t border-[#214457] pt-5 text-xs">
 				<p>© {new Date().getFullYear()} cine. Todos los derechos reservados.</p>
 			</div>
 		</footer>

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import AppSidebar from "@/components/appSidebar";
 import UserForm from "@/components/user-form";
+import SiteFooter from "@/components/site-footer";
 
 const emptyDraft = { name: "", email: "", role: "user" };
 
@@ -125,6 +126,7 @@ export default function ModificarPerfilPage() {
                     )}
                    
                 </section>
+                <SiteFooter />
             </main>
         </AppSidebar>
     );

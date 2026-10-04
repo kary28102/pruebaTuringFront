@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import AppSidebar from "@/components/appSidebar";
+import SiteFooter from "@/components/site-footer";
 
 function getUserValue(user, ...keys) {
   return keys.map((key) => user?.[key]).find((value) => value !== undefined && value !== null && value !== "");
@@ -72,11 +73,12 @@ export default function PerfilPage() {
                   </div>
                 )}
                 {userId && (
-                  <Link href="/perfil/modificarperfil" className="inline-block bg-[#19c5a5] text-white px-4 py-2 rounded hover:bg-[#17b39e] transition-colors">
+                  <Link href="/perfil/modificarperfil" className="inline-block bg-[#287e6e] text-white px-4 py-2 rounded hover:bg-[#17b39e] transition-colors">
                     Modificar Perfil
                   </Link>
                 )}
             </section>
+            <SiteFooter />
         </main>
     </AppSidebar>
   )

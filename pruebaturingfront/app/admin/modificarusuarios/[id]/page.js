@@ -6,6 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import CineNav from "@/components/cine-nav";
 import UserForm from "@/components/user-form";
+import SiteFooter from "@/components/site-footer";
 
 const emptyDraft = { name: "", email: "", role: "user" };
 
@@ -106,6 +107,7 @@ export default function ModificarUsuarioPage() {
 					</div>
 				)}
 			</section>
+			<SiteFooter />
 		</main>
 	);
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Film, Search, Sparkles, Star } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import SiteFooter from "@/components/site-footer";
 
 export default function Inicio() {
 	return (
@@ -51,6 +52,7 @@ export default function Inicio() {
 				<p className="mx-auto mt-3 max-w-xl text-[#9bb4bb]">Visita el catálogo y descubre una selección pensada para todos los gustos.</p>
 				<Link href="/peliculas" className="mt-6 inline-flex h-8 items-center justify-center rounded-lg bg-[#19c5a5] px-2.5 text-sm font-semibold text-[#07202c] transition-colors hover:bg-[#7de0ca] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[#19c5a5]/40">Ir al catálogo</Link>
 			</section>
+			<SiteFooter />
 		</main>
 	);
 }

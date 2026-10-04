@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import AppSidebar from "@/components/appSidebar";
+import SiteFooter from "@/components/site-footer";
 
 function roleLabel(role) {
 	const normalizedRole = String(role ?? "").toLowerCase();
@@ -125,6 +126,7 @@ export default function usuariosinformacion() {
 						<ArrowLeft className="h-4 w-4" />Volver a usuarios
 					</Link>
 				</section>
+				<SiteFooter />
 			</main>
 		</AppSidebar>
 	);
