@@ -75,17 +75,3 @@ Para verificar el funcionamiento del Frontend:
 
 Proyecto desarrollado como parte de una prueba técnica de desarrollo de software.
 
-
-## Primeros pasos
-
-Primero, ejecuta el servidor de desarrollo:
-
-```bash
-npm run dev
-# o
-yarn dev
-# o
-pnpm dev
-# o
-bun dev
-```
